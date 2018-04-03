@@ -1,6 +1,2 @@
----
-home: true 
----
-# hello world
+# 我的blog
 
-sb玩意 什么都不显示，干什么啊
