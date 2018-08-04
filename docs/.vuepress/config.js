@@ -4,6 +4,7 @@ module.exports = {
 
     theme: 'vuepress-theme-reco',
     themeConfig: {
+      type: 'blog',
        // 博客配置
       blogConfig: {
         category: {
