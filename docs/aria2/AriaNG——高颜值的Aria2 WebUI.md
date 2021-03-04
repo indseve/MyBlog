@@ -1,7 +1,18 @@
-# AriaNG——高颜值的Aria2 WebUI
+---
+title: AriaNG——高颜值的Aria2 WebUI
+date: '2018-08-13 08:00:00'
+sidebar: 'auto'
+categories:
+ - aria2
+tags:
+ - aria
+ - 下载
+publish: true
+---
+<!-- # AriaNG——高颜值的Aria2 WebUI -->
 ## 一.引
 我之前用的是YAAW和Webui-aria2，前者够简洁，后者多了不少功能，但是……作为一个挑剔的人，我还是一直觉得它们不够漂亮，不过前几天我在群里发现有人发了张截图，我现在找不到了，就自己截了张
-![Image text](aria2NG.jpg "ariaNG")
+![Image text](./aria2NG.jpg "ariaNG")
 啧啧啧，是不是很棒？我当时一下子就被吸引住了，然后看到左上角这个名字后就去找了下，发现这个是7月多才初步开发完成的，怪不得我之前没见到过。作者的GITHUB：[传送门](https://github.com/mayswind/AriaNg)
 
 以下为作者原话

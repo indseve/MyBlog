@@ -1,7 +1,9 @@
 module.exports = {
     title: 'Hello VuePress',
     description: 'Just playing around',
-
+    markdown: {
+      lineNumbers: true
+    },
     theme: 'vuepress-theme-reco',
     themeConfig: {
       type: 'blog',

@@ -1,4 +1,17 @@
-# Aria2+Plex实现支持离线下载的小型私人视频云盘
+---
+title: Aria2+Plex实现支持离线下载的小型私人视频云盘
+date: '2018-09-09 08:00:00'
+sidebar: 'auto'
+categories:
+ - aria2
+tags:
+ - aria
+ - 下载
+ - plex
+ - 云盘
+publish: true
+---
+<!-- # Aria2+Plex实现支持离线下载的小型私人视频云盘 -->
 ## 一.介绍
 Aria2我就不介绍了，我这写了好几篇了，Plex呢，也是我前阵子刚介绍的。最近在研究新的玩法，终于算是搞定了，来和大家分享一下。
 
@@ -35,6 +48,7 @@ on-download-complete=/home/aria2-mv.sh
 #下面是hook脚本
 cat >/home/aria2-mv.sh<<'EOF'
 #!/bin/bash
+
 SRC=$3
 if [ "$2" == "0" ]; then
   exit 0
@@ -64,6 +78,7 @@ on-download-complete=/home/aria2-mv.sh
 #下面是hook脚本
 cat >/home/aria2-mv.sh<<'EOF'
 #!/bin/bash
+
 SRC=$3
 if [ "$2" == "0" ]; then
   exit 0
