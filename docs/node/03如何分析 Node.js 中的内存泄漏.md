@@ -129,10 +129,10 @@ heapdump.writeSnapshot('./' + Date.now() + '.heapsnapshot');
 这里是对错误代码的最小重现代码。
 
 首先使用 node --expose-gc index.js 运行代码，将会得到两个内存快照，之后打开 devtool，点击 profile，载入内存快照。打开对比，Delta 会显示对象的变化情况，如果对象 Delta 一直增长，就很有可能是内存泄漏了。
-![image](image/03-1.png)
+![image](./image/03-1.png)
 
 可以看到有三处对象明显增长的地方，闭包、上下文以及 Buffer 对象增长。点击查看一下对象的引用情况：
-![image](image/03-2.png)
+![image](./image/03-2.png)
 
 其实这三处对象增长都是一个问题导致的。test 对象中的 error 监听事件中闭包引用了 innerData 对象，导致 buffer 没有被清除，从而导致内存泄漏。
 

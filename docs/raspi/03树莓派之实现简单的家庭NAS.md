@@ -10,7 +10,7 @@ tags:
  - linux
 publish: true
 ---
-![Image text](image/03-1.jpg)
+![Image text](./image/03-1.jpg)
 <!-- # 树莓派之实现简单的家庭NAS -->
 ## 安装Samba实现文件共享
 ### 第一部分：挂载硬盘。

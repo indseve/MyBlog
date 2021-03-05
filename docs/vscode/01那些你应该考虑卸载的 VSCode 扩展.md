@@ -35,7 +35,7 @@ publish: true
 我经常看到一些使用 VSCode 没几天的人喷没有路径补全，我觉得很莫名其妙。可以看到这个扩展已经快 3 年没维护了，这也是一个应该放弃使用它的理由。其实如果一个工具本身功能完善，没什么 bug，没有依赖别的项目的话，长期不更新倒没什么。但实际上很多项目都会依赖别的项目，尤其是使用 JS 开发的 VSCode 扩展，经常可以看到各种 npm 包报安全漏洞，最近一次影响比较大的应该是 [acorn](https://app.snyk.io/vuln/SNYK-JS-ACORN-559469)。
 
 其实 VSCode 自身已经支持在 import/require 也就是导入语句中使用路径补全，但是在其它场景中写路径字符串时还是没有提示。如果你觉得在导入语句中有路径补全已经能够满足你的使用需求，那我觉得这个插件可以考虑卸载了。类似的还有 [Path Autocomplete](https://marketplace.visualstudio.com/items?itemName=ionutvmi.path-autocomplete)。
-![Image text](image/01-1.gif)
+![Image text](./image/01-1.gif)
 ### [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
     Last updated: 2018/2/17
     Issues open/close: 100/59
@@ -43,7 +43,7 @@ publish: true
 从侧边栏可以看到我一个扩展都没打开，实测在 HTML, js, jsx, tsx 文件中已经内置支持自动闭合标签功能，但是 vue 还是不支持，可以看一下我提的 issue：auto close tag doesn't work in vue file。
 
 这个扩展的作者开发了很多优秀的 VSCode 扩展，包括这个和下面的 Auto Rename Tag，最有名的应该是 [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)。我觉得有些扩展的功能被内置一方面也是好事，毕竟人的精力是有限的，维护开源项目还是很累的。
-![Image text](image/01-2.gif)
+![Image text](./image/01-2.gif)
 ### [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
     Last updated: 2019/10/27
     Issues open/close: 453/71
@@ -58,7 +58,7 @@ publish: true
   },
 ```
 还有一款也是这个作者开发的扩展 Terminal 早就在 2017/7/22 就不维护了，下载量高达 581 K。不维护的理由作者在扩展主页上也说了，一个是 Code Runner 的功能比它还多，另一个是 VSCode 已经内置了这个扩展的部分功能。
-![Image text](image/01-3.gif)
+![Image text](./image/01-3.gif)
 ### [npm Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.npm-intellisense)
     Last updated: 2017/2/23
     Issues open/close: 27/19
@@ -66,19 +66,19 @@ publish: true
 这个扩展的功能是支持在导入语句中提供 npm 模块补全，从最后更新时间来推测这个功能应该 3 年前就被内置支持，但是下载量很恐怖啊，github 上还能看到 9 天前提的 issue，人间迷惑行为。
 
 和这个扩展功能相同，下载量同样非常高的另一个扩展是: [Node.js Modules Intellisense](https://marketplace.visualstudio.com/items?itemName=leizongmin.node-module-intellisense)。
-![image text](image/01-4.gif)
+![image text](./image/01-4.gif)
 ### [Document This](https://marketplace.visualstudio.com/items?itemName=joelday.docthis)
     Last updated: 2018/6/4
     Issues open/close: 64/124
     Download: 638K
 VSCode 已经内置自动生成 jsdoc 和注释补全功能。
-![image text](image/01-5.gif)
+![image text](./image/01-5.gif)
 ### [HTML Snippets](https://marketplace.visualstudio.com/items?itemName=abusaidm.html-snippets)
     Last updated: 2017/12/28
     Issues open/close: 19/21
     Download: 3.3M
 这个扩展的下载量充分说明了有些人安装扩展只看名字，但凡瞅一眼这个扩展的主页也不会安装了:
-![image text](image/01-6.jpg)
+![image text](./image/01-6.jpg)
 ## 维护不积极
 ### [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)
     Last updated: 2017/7/12

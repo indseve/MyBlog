@@ -1,6 +1,6 @@
 module.exports = {
-    title: 'Hello VuePress',
-    description: 'Just playing around',
+    title: '后积先定界',
+    description: '数无形时少直觉，形少数时难入微',
     markdown: {
       lineNumbers: true
     },
@@ -8,6 +8,9 @@ module.exports = {
     themeConfig: {
       type: 'blog',
       author: 'indesve',
+      nav: [
+        { text: 'TimeLine', link: '/timeline/', icon: 'reco-date' }
+      ],
        // 博客配置
       blogConfig: {
         category: {
@@ -19,9 +22,10 @@ module.exports = {
           text: 'Tag'      // 默认文案 “标签”
         },
         socialLinks: [     // 信息栏展示社交信息
-          { icon: 'reco-github', link: 'https://github.com/recoluan' },
-          { icon: 'reco-npm', link: 'https://www.npmjs.com/~reco_luan' }
+          { icon: 'reco-github', link: 'https://github.com/indseve' }
         ]
-      }
+      },
+      noFoundPageByTencent: false,
+      authorAvatar: '/avatar.jpg'
     }
   }

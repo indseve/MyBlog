@@ -57,7 +57,7 @@ let iterdtor = new Iterdtor(arr);
 iterdtor.next()
 iterdtor.next()
 ```
-![avatar](iamge/3-1.png)
+![avatar](./image/3-1.png)
 
 这就符合迭代器模式的特点，并没有暴露内部的对象， 通过next的方法可以遍历内部对象。
 
@@ -83,7 +83,7 @@ while(ajaxSign){
     iterator.next()
 }
 ```
-![avatar](iamge/3-2.png)
+![avatar](./image/3-2.png)
 
 我们执行了一下Generator函数返回一个迭代器。通过next方法，可以阻塞性的去执行Generator的代码。
 
@@ -142,7 +142,7 @@ ajaxGetData()
 
 await在什么时候可以用？ 只有在async函数体内部使用，而且这个作用范围是不可以继承下去的。
 
-![avator](iamge/3-3.png)
+![avator](./image/3-3.png)
 
 在promise中怎么使用async函数
 ```js
@@ -153,14 +153,14 @@ await在什么时候可以用？ 只有在async函数体内部使用，而且这
 ```
 await 可以接收一个同步的事情吗？继续执行下去不阻塞
 
-![avator](iamge/3-4.png)  
+![avator](./image/3-4.png)  
 
 async函数的返回值是什么？async函数的返回值是一个promise对象,
 
 ？？？？ what 返回了一个promise对象。这有啥用呢？请听下面分析
 这就代表着你在执行完所有的异步请求后还可以继续将你需要的结果用return的方式保存在一个promise对象中。promise的用处是什么？他好像可以存储一个值在指定情况下触发一个回调函数（这个不理解的可以看一下上一篇内容哈）所以这可以帮助我们把内部的异步请求的数据抛出到函数外部来。
 
-![avator](iamge/3-5.png)
+![avator](./image/3-5.png)
 
 下面的使用场景：
 
@@ -180,7 +180,7 @@ async function fn(){
 }
 let a = fn()
 ```
-![avator](iamge/3-6.png)
+![avator](./image/3-6.png)
 
 ```js
 async function fn(){
@@ -193,7 +193,7 @@ async function fn(){
 }
 let a = fn()
 ```
-![avator](iamge/3-7.png)
+![avator](./image/3-7.png)
 
 这两种方式都可以等待异步的promise执行完成之后再赋值给result，这个时候，我们返回的a就是一个pending状态的promise对象，上一章节我们讲过了promise的基本原理，后面的操作我就不多提了，所以得到你想要的内容的promsie你就会操作了。
 

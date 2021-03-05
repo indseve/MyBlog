@@ -134,7 +134,7 @@ https://github.com/Microsoft/TypeScript/issues/2719
 相关的 stackoverflow讨论 https://stackoverflow.com/questions/39276608/is-there-a-difference-between-export-default-x-and-export-x-as-default/39277065#39277065，
 
 React的实现甚至为了兼容不同打包工具做了相应的hack。
-![avator](image/react_hack.jpg)
+![avator](./image/react_hack.jpg)
 <center style="font-size:14px;color:#C0C0C0;text-decoration:underline">react的hack</center> 
 
 ESM和CJS的互操作的复杂性大部分是来源于 default的导入和导出。

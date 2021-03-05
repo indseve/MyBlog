@@ -149,8 +149,8 @@ function Promise(callback) {
 }
 ```
 自己实现与官方Promise执行的对比。大家可以看一下这个setTimeout导致的执行顺序问题。所以阅读别人对各种功能实现时要学会对照的去看。
-![avator](iamge/2-1.png)
-![avator](iamge/2-2.png)
+![avator](./image/2-1.png)
+![avator](./image/2-2.png)
 到这里伙伴们已经了解了我们new 一个构造函数时都会做哪些事情。
 
 1. 对promise实例定义一个状态，值为PENDING。
@@ -221,7 +221,7 @@ Promise.prototype = {
 到这里我们大体梳理清楚，resolve、reject、then方法的用处。
 
 ### 提一嘴 reject方法没有执行done函数会导致以下情况
-![avator](iamge/2-3.png)
+![avator](./image/2-3.png)
 一：在new promise实例过程中执行的callback函数，在函数执行的过程中肯定会调用resolve或者reject（两个都调用也可能）。当调用了resolve方法之后会改变promise的状态，存放结果。表示任务完成，执行done函数。（reject就不再来一遍了）
 
 二：then方法的执行事件与resolve方法没有任何先后顺序可言。随心所欲谁在前面都不一定。在resolve（reject）之前执行，就注册一下要执行的事件。在resolve（reject）之后执行就直接执行就可以了，并且不要注册。
@@ -331,12 +331,12 @@ promise的源码则是（某个版本的，版本号我不记得了）
 
 把catch、then、chain方法放在原型上。
 
-![avator](iamge/2-4.png)
+![avator](./image/2-4.png)
 
 有图为证，字面意思应该是这个意思，我觉得我没想错。
 在改变promise的状态也好、value也好。都在频繁的使用PromiseSet方法来设置属性，对方法进行封装，并且方便状态的管理，附加合理的容错。
 
-![avator](iamge/2-5.png)
+![avator](./image/2-5.png)
 
 对比源码之后，觉得自己虽然流程大体了解，但是这种精密而且优雅的方式，是短时间内很难去掌握的。
 

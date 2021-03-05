@@ -49,7 +49,7 @@ ajax完成后
 
 在你不知道的javascript一书中，对于回调的信任问题做了阐述
 当你使用第三方的库的方法处理回调时很有可能遇到以下信任内容：
-![avator](iamge/1-1.png)
+![avator](./image/1-1.png)
 怎么解决？？？？ 这种信任问题该怎么办？
 
 ## 事实证明 你需要一个承诺
@@ -183,7 +183,7 @@ promiseAll.then(res=>{
     console.log(err)
 })
 ```
-![avator](iamge/1-2.png)
+![avator](./image/1-2.png)
 看结果不难看出来符合之前所说的
 
 Promise.race 竞速模式 也是接受一个每一项都是promise的数组。但是与all不同的是，第一个promise对象状态变成resolved时自身的状态变成了resolved，第一个promise变成rejected自身状态就会变成rejected。第一个变成resolved的promsie的值就会被使用。

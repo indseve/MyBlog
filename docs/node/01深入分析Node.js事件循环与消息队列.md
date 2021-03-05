@@ -15,7 +15,7 @@ publish: true
 >多数的网站不需要大量计算，程序花费的时间主要集中在磁盘 I/O 和网络 I/O 上面
 
 SSD读取很快，但和CPU处理指令的速度比起来也不在一个数量级上，而且网络上一个数据包来回的时间更慢：
-![image](image/01-1.jpg)
+![image](./image/01-1.jpg)
 
 
 一个数据包来回的延迟平均320ms(我网速慢，ping国内网站会更快)，这段时间内一个普通 cpu 执行几千万个周期应该没问题
@@ -26,7 +26,7 @@ SSD读取很快，但和CPU处理指令的速度比起来也不在一个数量�
 
 ## 1. 什么是Node.js进程
 我们可以先默默地回答下下面的9个问题，是否都清楚呢?
-![image](image/01-2.jpg)
+![image](./image/01-2.jpg)
 
 ### 1.1 异步IO
 异步IO是指操作系统提供的IO（数据进出）的能力，比如键盘输入，对应到显示器上会有专门的数据输出接口，这就是我们生活中可见的IO能力；这个接口在向下会进入到操作系统这个层面，在操作系统中，会提供诸多的能力，比如：磁盘的读写，DNS的查询，数据库的连接啊，网络请求的处理，等等；
@@ -48,7 +48,7 @@ nodejs是单线程执行的，同时它又是基于**事件驱动**的**非阻�
 
 那么 Nodejs 如何组织它们呢?
 
-![image](image/01-3.jpg)
+![image](./image/01-3.jpg)
 
 ### 2.1 Application Code(JS)
 >框架代码以及用户代码即我们编写的应用程序代码. npm包. nodejs内置的js模块等，我们日常工作中的大部分时间都是编写这个层面的代码。
@@ -76,7 +76,7 @@ Nodejs 通过一层 C++ Binding, 把 JS 传入 V8, V8 解析后交给 libUV 发�
 
 ## 3. libuv 架构
 我们知道，nodejs实现异步机制的核心便是libuv，libuv承担着nodejs与文件. 网络等异步任务的沟通桥梁，下面这张图让我们对libuv有个大概的印象：
-![image](image/01-4.jpg)
+![image](./image/01-4.jpg)
 
 
 这是libuv官网的一张图，很明显，nodejs的网络I/O. 文件I/O. DNS操作. 还有一些用户代码都是在 libuv 工作的。 既然谈到了异步，那么我们首先归纳下nodejs里的异步事件：
@@ -123,17 +123,17 @@ node.js启动过程可以分为以下步骤：
 
 以上就是 nodejs 执行一个js文件的全过程。接下来着重介绍第八个步骤，事件循环。
 
-![image](image/01-5.jpg)
+![image](./image/01-5.jpg)
 
 Nodejs 完全是单线程的. 从进程启动后, 由主线程加载我们的 js 文件(上图中 main.js), 然后进入消息循环. 可见对于 js 程序而言, 完整运行在单线程之中.
 
-![image](image/01-6.jpg)
+![image](./image/01-6.jpg)
 
 但并不是说 Node 进程只有一个线程. 正如 Node.js event loop workflow & lifecycle in low level 中所说:在 libUV 这一层实际上是有个线程池辅助完成一些工作的.
 
 ### 4.1 细说消息循环
 再来看一下 JS 中的消息循环部分:
-![image](image/01-7.jpg)
+![image](./image/01-7.jpg)
 
 
 Nodejs 将消息循环又细分为 6 个阶段(官方叫做 Phase), 每个阶段都会有一个类似于队列的结构, 存储着该阶段需要处理的回调函数. 我们来看一下这 6 个 Phase 的作用,这六个阶段的核心代码如下：
@@ -413,7 +413,7 @@ Nodejs 就是通过 Poll Phase, 对 IO 事件的等待和内核异步事件的�
 此外, 不同于 Phase, process.nextTick 以及 Promise 回调的数量是受限制的. 也就是说, 如果一直往这个队列中加入回调, 那么整个消息循环就会被 “卡住”.
 我们用一张图来看看 process.nextTick 以及 Promise:
 
-![image](image/01-8.jpg)
+![image](./image/01-8.jpg)
 
 ### 6.2 setTimeout(…, 0) vs. setImmediate
 setTimeout(..., 0)vs. setImmediate 到底谁快?
@@ -429,7 +429,7 @@ setTimeout(() => console.log(1))
 
 我们从原理的角度看看这道消息循环的基础问题.首先,Nodejs启动,初始化环境后加载我们的JS代码(index.js).发生了两件事(此时尚未进入消息循环环节):setImmediate 向 Check Phase 中添加了回调 console.log(2); setTimeout 向 Timer Phase 中添加了回调 console.log(1)这时候, 要初始化阶段完毕, 要进入 Nodejs 消息循环了, 如下图:
 
-![image](image/01-9.jpg)
+![image](./image/01-9.jpg)
 
 为什么会有两种输出呢? 接下来一步很关键:
 
