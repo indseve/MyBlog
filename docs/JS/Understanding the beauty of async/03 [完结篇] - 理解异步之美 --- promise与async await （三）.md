@@ -1,5 +1,5 @@
 ---
-title: [完结篇] - 理解异步之美 --- promise与async await （三）
+title: 【完结篇】 - 理解异步之美 --- promise与async await （三）
 date: '2018-06-24 08:00:00'
 sidebar: 'auto'
 categories:
