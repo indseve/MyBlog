@@ -57,7 +57,7 @@ close callbacks：执行close事件的callback，例如socket.on("close",func)
 event loop的每一次循环都需要依次经过上述的阶段。  每个阶段都有自己的callback队列，每当进入某个阶段，都会从所属的队列中取出callback来执行，当队列为空或者被执行callback的数量达到系统的最大数量时，进入下一阶段。这六个阶段都执行完毕称为一轮循环。
 
 event loop的核心代码在deps/uv/src/unix/core.c
-```c++
+```cpp
 int uv_run(uv_loop_t* loop, uv_run_mode mode) {
   int timeout;
   int r;
@@ -117,7 +117,7 @@ int uv_run(uv_loop_t* loop, uv_run_mode mode) {
 
 ## timers阶段
 timer阶段的代码在deps/uv/src/unix/timer.c的uv__run_timers()中
-```c++
+```cpp
 void uv__run_timers(uv_loop_t* loop) {
   struct heap_node* heap_node;
   uv_timer_t* handle;
@@ -141,7 +141,7 @@ void uv__run_timers(uv_loop_t* loop) {
 
 ## I/O callbacks阶段
 I/O callbacks阶段的代码在deps/uv/src/unix/core.c的int uv__run_pending()中
-```c++
+```cpp
 static int uv__run_pending(uv_loop_t* loop) {
   QUEUE* q;
   QUEUE pq;
@@ -166,7 +166,7 @@ static int uv__run_pending(uv_loop_t* loop) {
 
 ## idle和prepare阶段
 uv__run_idle()、uv__run_prepare()、uv__run_check()定义在文件deps/uv/src/unix/loop-watcher.c中，它们的逻辑非常相似，其中的实现利用了大量的宏（说实在我个人非常烦宏，它的可读性真的很差，为了那点点的性能而使用宏真是值得商榷）。
-```c++
+```cpp
   void uv__run_##name(uv_loop_t* loop) {                                      
     uv_##name##_t* h; 
     QUEUE queue; 
@@ -183,7 +183,7 @@ uv__run_idle()、uv__run_prepare()、uv__run_check()定义在文件deps/uv/src/u
 ```
 ## poll阶段
 poll阶段的代码+注释高达200行不好逐行分析，我们挑选部分重要代码
-```C++
+```cpp
 void uv__io_poll(uv_loop_t* loop, int timeout) {
 	//...
 	//处理观察者队列
@@ -233,7 +233,7 @@ void uv__io_poll(uv_loop_t* loop, int timeout) {
 
 ## check阶段
 见上面的 *idle和prepare*阶段
-```c++
+```cpp
 ##close阶段
 static void uv__run_closing_handles(uv_loop_t* loop) {
   uv_handle_t* p;
@@ -315,14 +315,14 @@ process.nextTick的实现在next_tick.js中
   ] = process._setupNextTick(_tickCallback);
 ```
 查找了一下发现在node.cc中有
-```c++
+```cpp
 env->SetMethod(process, "_setupNextTick", SetupNextTick);//暴露_setupNextTick给js
 ```
 _setupNextTick()是node.cc那边暴露出来的方法，因此猜测这就是连接event loop的桥梁。
 
 ## c++中执行process.nextTick的回调
 在node.cc中找出SetupNextTick()函数，有这样的代码片段
-```c++
+```cpp
 void SetupNextTick(const FunctionCallbackInfo<Value>& args) {
   Environment* env = Environment::GetCurrent(args);
 
@@ -333,7 +333,7 @@ void SetupNextTick(const FunctionCallbackInfo<Value>& args) {
 }
 ```
 _tickCallback被放置到env里面去了，那它何时被调用？也是在node.cc中我们发现
-```c++
+```cpp
 void InternalCallbackScope::Close() {
   if (!tick_info->has_scheduled()) {
     env_->isolate()->RunMicrotasks();
@@ -347,7 +347,7 @@ void InternalCallbackScope::Close() {
 }
 ```
 可知InternalCallbackScope::Close()会调用它，而InternalCallbackScope::Close()则在文件node.cc的InternalMakeCallback()中被调用
-```c++
+```cpp
 MaybeLocal<Value> InternalMakeCallback(Environment* env,
                                        Local<Object> recv,
                                        const Local<Function> callback,
@@ -362,7 +362,7 @@ MaybeLocal<Value> InternalMakeCallback(Environment* env,
 }
 ```
 而InternalMakeCallback()则是在async_wrap.cc的AsyncWrap::MakeCallback()中被调用
-```c++
+```cpp
 MaybeLocal<Value> AsyncWrap::MakeCallback(const Local<Function> cb,
                                           int argc,
                                           Local<Value>* argv) {
@@ -379,13 +379,13 @@ _tickCallback()//js中执行process.nextTick()的回调函数
 process._setupNextTick(_tickCallback)		//c++和js的桥梁，将回调交给C++执行
 ```
 此时_tickCallback()被转移到在C++层面，它首先被存储到env中
-```c++
+```cpp
 env->set_tick_callback_function()//将_tickCallback存储到env中
         ↓		
 env->SetMethod(process, "_setupNextTick", SetupNextTick);//调用上者，js中process._setupNextTick的真身
 ```
 被存储到env的_tickCallback()被调用流程如下：
-```c++
+```cpp
 env_->tick_callback_function()//取出_tickCallback执行
         ↓
 InternalCallbackScope::Close()//调用前者
