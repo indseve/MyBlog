@@ -16,7 +16,7 @@ publish: true
 ## makefie到底是什么
 在Linux下，对于下面这个简单的程序
 
-```bash
+```c
 //main.c
 #include <stdio.h>
 #include <math.h>
